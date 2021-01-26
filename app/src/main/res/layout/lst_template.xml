@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/matcardview"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:strokeColor="@color/colorGrey"
+    app:strokeWidth="0.5dp">
+        <LinearLayout
+            android:id="@+id/lvContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffe6e6e6"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <TextView
+                android:id="@+id/txtproductname"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="No."
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/txtassetno"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="AssetNo"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/txtmajorcat"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="MajorCat"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtminorcat"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="MinorCat"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/txtproductcompany"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="AssetDesc"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/txtassetname"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="AssetName"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txttagstate"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="TagState"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+
+
+            <TextView
+                android:id="@+id/txttype"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Type"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtremarks"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Remarks"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtassetcap"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="AssetCap"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtquant"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="quantity"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtoricost"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Original Cost"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtcurcost"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="CurCost"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/txtnetblock"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="NetBlock"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"/>
+
+
+
+
+            <TextView
+                android:id="@+id/txtproductprice"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="IMPACTFACTOR"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+

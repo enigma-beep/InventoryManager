@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:weightSum="4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inventory Management"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="28sp"
+            android:textColor="@color/paragraph"
+            android:layout_gravity="left"
+            android:layout_weight="3"
+            android:layout_marginLeft="10dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_gravity="end">
+            <Button
+                android:id="@+id/btnupload"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="#1083f5"
+                android:text="ADD EXCEL"
+                android:textColor="#ffffff"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.75"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            app:boxStrokeColor="@color/button">
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="RFID No."
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1.25"
+            android:gravity="center"
+            app:cardCornerRadius="25dp">
+
+            <Button
+                android:id="@+id/btSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:background="@color/button"
+                android:textColor="@color/secondary"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="8dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/paragraph"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Found"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/paragraph"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Not Found"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/paragraph"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:textSize="14sp"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:id="@+id/tvTotal"
+                    android:layout_height="wrap_content"
+                    android:text="NA"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/paragraph"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tvFound"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="NA"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/paragraph"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tvNotfound"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="NA"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/paragraph"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    </HorizontalScrollView>
+
+    <ScrollView android:id="@+id/ScrollView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <HorizontalScrollView android:id="@+id/HorizontalScrollView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:id="@+id/lvcontainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/button"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal">
+
+                <TextView
+                    android:id="@+id/txtProduct"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text="RFID No"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium" />
+
+                <TextView
+                    android:id="@+id/txtAssetNo"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="AssetNo"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium" />
+                <TextView
+                    android:id="@+id/txtMajorCat"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Major Category"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium" />
+                <TextView
+                    android:id="@+id/txtMinorCat"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Minor Category"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium" />
+
+                <TextView
+                    android:id="@+id/txtCompany"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Asset Description"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtAssetName"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Asset Name"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtTagState"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Tagging State"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+
+
+
+
+                <TextView
+                    android:id="@+id/txtType"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Type"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtRemarks"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Remarks"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtAssetCap"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Asset Cap date"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtQuant"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Quantity"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtOriCost"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Original Cost"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtCurCost"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Current Cost"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <TextView
+                    android:id="@+id/txtNetBlock"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Net Block Period"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+
+
+
+
+
+                <TextView
+                    android:id="@+id/txtPrice"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center"
+                    android:text="Found"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
+
+
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lvcontainer" />
+
+        </LinearLayout>
+
+
+
+    </HorizontalScrollView></ScrollView>
+
+
+
+    <TextView
+        android:id="@+id/txtresulttext"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@android:id/list"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:text=""
+        android:textColor="#FFF55F54"
+        android:textSize="10sp"
+        android:textStyle="italic|bold"
+        android:visibility="gone"/>
+
+
+</LinearLayout>
