@@ -25,4 +25,13 @@
     <color name="button">#078080</color>
     <color name="headline">#232323</color>
     <color name="tertiary">#f45d48</color>
+
+
+    <color name="start">#FF0000</color>
+    <color name="center">#FF8000</color>
+    <color name="end">#FFFF00</color>
+
+    <color name="bat_start">#00FF00</color>
+    <color name="bat_center">#FFFF00</color>
+    <color name="bat_end">#FF0000</color>
 </resources>
