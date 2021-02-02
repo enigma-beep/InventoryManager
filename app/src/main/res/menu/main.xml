@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.poxo.rfidtest.MainActivity" >
+
+    <item
+        android:id="@+id/action_connected"
+        android:icon="@drawable/connected"
+        android:orderInCategory="100"
+        android:visible="false"
+        android:title="@string/connected_str"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/home"
+        android:orderInCategory="101"
+        android:visible="true"
+        android:title="@string/home_str"
+        app:showAsAction="always" />
+
+</menu>
