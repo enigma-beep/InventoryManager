@@ -102,10 +102,10 @@ public class TagListAdapter extends BaseAdapter {
             arg1 = inflater.inflate(R.layout.list_item, null);
             
             holder = new ItemHolder();
-            holder.mImage = (ImageView) arg1.findViewById(R.id.mImage);
-            holder.mUpText = (TextView) arg1.findViewById(R.id.mTagText);
-            holder.mDownText = (TextView) arg1.findViewById(R.id.mRssiText);
-            holder.mDupText = (TextView) arg1.findViewById(R.id.mDupText);
+            holder.mImage = arg1.findViewById(R.id.mImage);
+            holder.mUpText = arg1.findViewById(R.id.mTagText);
+            holder.mDownText = arg1.findViewById(R.id.mRssiText);
+            holder.mDupText = arg1.findViewById(R.id.mDupText);
             arg1.setTag(holder);
         } 
         else {

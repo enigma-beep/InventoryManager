@@ -141,8 +141,7 @@ public class FileSelectorDialog {
                     if (mSelectDirectoryOption)
                         return sel.isDirectory();
                     else {
-                        boolean endsWith = mFileEndsWith !=
-                                null ? filename.toLowerCase().endsWith(mFileEndsWith) : true;
+                        boolean endsWith = mFileEndsWith == null || filename.toLowerCase().endsWith(mFileEndsWith);
                         return endsWith || sel.isDirectory();
                     }
                 }
@@ -153,7 +152,7 @@ public class FileSelectorDialog {
                     r.add(file);
             }
         }
-        mFileList = (String[]) r.toArray(new String[]{});
+        mFileList = r.toArray(new String[]{});
     }
 
     private File getChosenFile(String fileChosen) {

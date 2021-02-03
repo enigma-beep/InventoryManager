@@ -116,6 +116,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return ProductName.size();
     }
 
+    public void clearData() {
+        ProductName.clear();
+        ProductNo.clear();
+        Found.clear();
+        AssetNo.clear();
+        MajorCat.clear();
+        MinorCat.clear();
+        AssetName.clear();
+        TagState.clear();
+        Type.clear();
+        Remarks.clear();
+        AssetCap.clear();
+        Quant.clear();
+        OriCost.clear();
+        CurCost.clear();
+        Quant.clear();
+        // clear list
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView productName, productNo, found, assetno, majorCat, minorCat, assetName, tagState, type, remarks, assetCap, quant, oriCost, curCost, netBlock;

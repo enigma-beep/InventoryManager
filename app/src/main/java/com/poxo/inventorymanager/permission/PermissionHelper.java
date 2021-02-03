@@ -39,10 +39,7 @@ public class PermissionHelper {
     public static boolean checkPermission(Context ctx, String permission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int permissionResult = PermissionChecker.checkSelfPermission(ctx, permission);
-            if (permissionResult == PackageManager.PERMISSION_GRANTED)
-                return true;
-            else
-                return false;
+            return permissionResult == PackageManager.PERMISSION_GRANTED;
         }
         else
             return true;

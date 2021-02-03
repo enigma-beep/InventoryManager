@@ -33,13 +33,13 @@ public class Stopwatch {
     public enum State { 
         PAUSED, 
         RUNNING
-    };
-    
+    }
+
     private State mState;
 
     
     public interface GetTime {
-        public long now();
+        long now();
     }
     
     private GetTime SystemTime = new GetTime() {

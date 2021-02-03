@@ -66,7 +66,7 @@ public class XlsxCon {
             Log.e("y", y + "");
             return y;
         } catch (Exception ex) {
-            Log.e("Error Insert", ex.getMessage().toString());
+            Log.e("Error Insert", ex.getMessage());
             return 0;
         }
     }
@@ -89,6 +89,7 @@ public class XlsxCon {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+//            db.execSQL("DROP TABLE IF EXISTS " + Inventory);
             String create_sql = "CREATE TABLE IF NOT EXISTS " + Inventory + "("
                     + id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + ProductName + " TEXT ," + ProductNo + " TEXT ,"

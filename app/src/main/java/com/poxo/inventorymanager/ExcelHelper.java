@@ -76,7 +76,7 @@ public class ExcelHelper {
                     return;
                 }
             } catch (Exception ex) {
-                Log.d("Exception in importing", ex.getMessage().toString());
+                Log.d("Exception in importing", ex.getMessage());
             }
         }
     }

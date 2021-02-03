@@ -65,7 +65,7 @@ import android.os.IBinder;
 import android.os.Message;
 //import android.support.annotation.NonNull;
 import androidx.annotation.NonNull;
-import androidx.drawerlayout.widget.DrawerLayout;
+//import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -276,9 +276,9 @@ public class MainActivity  extends AppCompatActivity {
 
     private String[] mFunctionsString;
 
-    private DrawerLayout mDrawerLayout;
+//    private DrawerLayout mDrawerLayout;
 
-    private ListView mDrawerList;
+//    private ListView mDrawerList;
 
 //    private ActionBarDrawerToggle mDrawerToggle;
 
@@ -291,16 +291,7 @@ public class MainActivity  extends AppCompatActivity {
     private boolean mIsConnected;
 
     private BTConnectivityFragment mBTConnectivityFragment;
-//    private SDFragment mSDFragment;
-//    private RFAccessFragment mRFAccessFragment;
-//    private RFConfigFragment mRFConfigFragment;
-//    private RFSelectionFragment mRFSelectionFragment;
-//    private RapidFragment mRapidFragment;
-//    private InventoryFragment mInventoryFragment;
-//    private BCBarcodeFragment mBCBarcodeFragment;
-//    private SBBarcodeFragment mSBBarcodeFragment;
-//    private InfoFragment mInfoFragment;
-//    private BatteryFragment mBatteryFragment;
+
 
     private LinearLayout mUILayout;
 
@@ -308,8 +299,6 @@ public class MainActivity  extends AppCompatActivity {
 
     private ImageButton mConnectButton;
 
-
-//    private final MainHandler mMainHandler = new MainHandler(this);
 
     public final UpdateConnectHandler mUpdateConnectHandler = new UpdateConnectHandler(this);
 
@@ -370,7 +359,7 @@ public class MainActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnimport = (Button) findViewById(R.id.btnupload);
+        btnimport = findViewById(R.id.btnupload);
         tvTotal=findViewById(R.id.tvTotal);
         tvFound=findViewById(R.id.tvFound);
         tvNotfound=findViewById(R.id.tvNotfound);
@@ -399,6 +388,11 @@ public class MainActivity  extends AppCompatActivity {
         CurCost = new ArrayList<>();
         NetBlock = new ArrayList<>();
 
+//        SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
+//        mydatabase.execSQL("DROP TABLE "+Inventory);
+
+
+
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 1);
@@ -407,28 +401,28 @@ public class MainActivity  extends AppCompatActivity {
 
         mContext=this;
 
-        mRfidList = (ListView)findViewById(R.id.rfid_list);
+        mRfidList = findViewById(R.id.rfid_list);
 
         mRfidList.setOnItemClickListener(listItemClickListener);
 
-        mLocateLayout = (LinearLayout)findViewById(R.id.tag_locate_container);
+        mLocateLayout = findViewById(R.id.tag_locate_container);
 
-        mListLayout = (LinearLayout)findViewById(R.id.tag_list_container);
+        mListLayout = findViewById(R.id.tag_list_container);
 
-        mLocateTv = (TextView)findViewById(R.id.tag_locate_text);
+        mLocateTv = findViewById(R.id.tag_locate_text);
 
-        mTagLocateProgress = (ProgressBar)findViewById(R.id.tag_locate_progress);
+        mTagLocateProgress = findViewById(R.id.tag_locate_progress);
 
-        mBackButton = (ImageButton)findViewById(R.id.back_button);
+        mBackButton = findViewById(R.id.back_button);
         mBackButton.setOnClickListener(sledListener);
 
-        mTimerText = (TextView)findViewById(R.id.timer_text);
+        mTimerText = findViewById(R.id.timer_text);
 
-        mCountText = (TextView)findViewById(R.id.count_text);
+        mCountText = findViewById(R.id.count_text);
 
-        mSpeedCountText = (TextView)findViewById(R.id.speed_count_text);
+        mSpeedCountText = findViewById(R.id.speed_count_text);
 
-        mAvrSpeedCountTest = (TextView)findViewById(R.id.speed_avr_count_text);
+        mAvrSpeedCountTest = findViewById(R.id.speed_avr_count_text);
 
         tvLog=findViewById(R.id.tvLog);
 
@@ -440,42 +434,42 @@ public class MainActivity  extends AppCompatActivity {
             mAvrSpeedCountTest.setText(speedCountStr);
         }
 
-        mBatteryText = (TextView)findViewById(R.id.battery_text);
+        mBatteryText = findViewById(R.id.battery_text);
 
-        mTurboSwitch = (Switch)findViewById(R.id.turbo_switch);
+        mTurboSwitch = findViewById(R.id.turbo_switch);
 
-        mRssiSwitch = (Switch)findViewById(R.id.rssi_switch);
+        mRssiSwitch = findViewById(R.id.rssi_switch);
 
-        mFilterSwitch = (Switch)findViewById(R.id.filter_switch);
+        mFilterSwitch = findViewById(R.id.filter_switch);
 
-        mSoundSwitch = (Switch)findViewById(R.id.sound_switch);
+        mSoundSwitch = findViewById(R.id.sound_switch);
 
-        mMaskSwitch = (Switch)findViewById(R.id.mask_switch);
+        mMaskSwitch = findViewById(R.id.mask_switch);
 
-        mToggleSwitch = (Switch)findViewById(R.id.toggle_switch);
+        mToggleSwitch = findViewById(R.id.toggle_switch);
 
-        mPCSwitch = (Switch)findViewById(R.id.pc_switch);
+        mPCSwitch = findViewById(R.id.pc_switch);
 
-        mFileSwitch = (Switch)findViewById(R.id.file_switch);
+        mFileSwitch = findViewById(R.id.file_switch);
 
-        mClearButton = (Button)findViewById(R.id.clear_button);
+        mClearButton = findViewById(R.id.clear_button);
         mClearButton.setOnClickListener(clearButtonListener);
 
-        mInvenButton = (Button)findViewById(R.id.inven_button);
+        mInvenButton = findViewById(R.id.inven_button);
         mInvenButton.setOnClickListener(sledListener);
 
-        mStopInvenButton = (Button)findViewById(R.id.stop_inven_button);
+        mStopInvenButton = findViewById(R.id.stop_inven_button);
         mStopInvenButton.setOnClickListener(sledListener);
 
-        mProgressBar = (ProgressBar)findViewById(R.id.timer_progress);
+        mProgressBar = findViewById(R.id.timer_progress);
         mProgressBar.setVisibility(View.INVISIBLE);
 
-        mSessionSpin = (Spinner)findViewById(R.id.session_spin);
+        mSessionSpin = findViewById(R.id.session_spin);
         mSessionChar = ArrayAdapter.createFromResource(mContext, R.array.session_array,
                 android.R.layout.simple_spinner_dropdown_item);
         mSessionSpin.setAdapter(mSessionChar);
 
-        mSelFlagSpin = (Spinner)findViewById(R.id.sel_flag_spin);
+        mSelFlagSpin = findViewById(R.id.sel_flag_spin);
         mSelFlagChar = ArrayAdapter.createFromResource(mContext, R.array.sel_flag_array,
                 android.R.layout.simple_spinner_dropdown_item);
         mSelFlagSpin.setAdapter(mSelFlagChar);
@@ -487,12 +481,12 @@ public class MainActivity  extends AppCompatActivity {
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 //        getActionBar().setDisplayShowHomeEnabled(false);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+//        mDrawerLayout = findViewById(R.id.drawer_layout);
+//        mDrawerList = findViewById(R.id.left_drawer);
 
 //        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        mUILayout = (LinearLayout)findViewById(R.id.ui_layout);
+        mUILayout = findViewById(R.id.ui_layout);
 
         mCurrentFragment = null;
 
@@ -500,30 +494,17 @@ public class MainActivity  extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getSize(size);
         int buttonHeight = size.x / 3;
 
-        mConnectButton = (ImageButton)findViewById(R.id.connect_BT);
-//        mConnectButton.setMinimumHeight(buttonHeight);
+        mConnectButton = findViewById(R.id.connect_BT);
 
 
 
         mConnectButton.setOnClickListener(buttonListener);
 
-//        mDrawerToggle = new ActionBarDrawerToggle(this,
-//                mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
-//            String mDrawerTitle = "Functions";
-//
-//            public void onDrawerClosed(View view) {
-//                super.onDrawerClosed(view);
-//            }
-//
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                getActionBar().setTitle(mDrawerTitle);
-//            }
-//        };
+
 
         mFunctionsString = getResources().getStringArray(R.array.functions_array);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mFunctionsString));
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+//        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mFunctionsString));
+//        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         mFragmentManager = getFragmentManager();
 
@@ -541,7 +522,7 @@ public class MainActivity  extends AppCompatActivity {
 
 
 
-        lbl = (TextView) findViewById(R.id.txtresulttext);
+        lbl = findViewById(R.id.txtresulttext);
 //        lv = getListView();
         tableName = "Inventory";
 
@@ -572,9 +553,9 @@ public class MainActivity  extends AppCompatActivity {
                 else{
                     if(ProductNo.contains(searchTerm)){
                         int index = ProductNo.indexOf(searchTerm);
-                        Toast.makeText(MainActivity.this,"Found", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this,"Found", Toast.LENGTH_SHORT).show();
                         SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
-                        String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = "+searchTerm;
+                        String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+searchTerm+"'";
                         mydatabase.execSQL(sql);
                         Found.set(index, "1");
                         customAdapter.notifyDataSetChanged();
@@ -587,7 +568,7 @@ public class MainActivity  extends AppCompatActivity {
                         tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
                     }
                     else{
-                        Toast.makeText(MainActivity.this,"Not Found", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this,"Not Found", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -611,28 +592,14 @@ public class MainActivity  extends AppCompatActivity {
         tvFound.setText(String.valueOf(cursor1.getInt(0)));
         cursor1.moveToFirst();
         tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+        customAdapter.notifyDataSetChanged();
+
 
 
 
 
     }
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode,
-//                                           String permissions[], int[] grantResults) {
-//        switch (requestCode) {
-//            case 1: {
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//
-//                } else {
-//
-//                    Toast.makeText(MainActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
-//                }
-//                return;
-//            }
-//
-//        }
-//    }
+
 
     void storeDataInArrays(){
         Cursor cursor= controller.readAllData();
@@ -669,12 +636,12 @@ public class MainActivity  extends AppCompatActivity {
             case requestcode:
                 String FilePath = data.getData().getPath();
 
-                Log.e("File path", FilePath);
+//                Log.e("File path", FilePath);
 
                 if (FilePath.contains("/root_path"))
                     FilePath = FilePath.replace("/root_path", "");
 
-                Log.e("New File path", FilePath);
+//                Log.e("New File path", FilePath);
 
                 try {
                     if (resultCode == RESULT_OK) {
@@ -684,13 +651,13 @@ public class MainActivity  extends AppCompatActivity {
 
                         try {
                             inStream = new FileInputStream(FilePath);
-                            Log.e("Extension", FilePath.substring(FilePath.lastIndexOf(".")));
+//                            Log.e("Extension", FilePath.substring(FilePath.lastIndexOf(".")));
 
                             if (FilePath.substring(FilePath.lastIndexOf(".")).equals(".xls")) {
-                                Log.e("File Type", "Selected file is XLS");
+//                                Log.e("File Type", "Selected file is XLS");
                                 wb = new HSSFWorkbook(inStream);
                             } else if (FilePath.substring(FilePath.lastIndexOf(".")).equals(".xlsx")) {
-                                Log.e("File Type", "Selected file is XLSX");
+//                                Log.e("File Type", "Selected file is XLSX");
                                 wb = new XSSFWorkbook(inStream);
                             } else {
                                 wb = null;
@@ -701,7 +668,7 @@ public class MainActivity  extends AppCompatActivity {
 
                             inStream.close();
                         } catch (IOException e) {
-                            lbl.setText("First " + e.getMessage().toString());
+                            lbl.setText("First " + e.getMessage());
                             e.printStackTrace();
                         }
 
@@ -718,8 +685,8 @@ public class MainActivity  extends AppCompatActivity {
 
                     }
                 } catch (Exception ex) {
-                    lbl.setText(ex.getMessage().toString() + "Second");
-                    Log.e("POI Error", ex.getMessage().toString());
+                    lbl.setText(ex.getMessage() + "Second");
+//                    Log.e("POI Error", ex.getMessage());
                 }
 
                 SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
@@ -741,36 +708,7 @@ public class MainActivity  extends AppCompatActivity {
                 case R.id.connect_BT:
                     id = 0;
                     break;
-//                case R.id.sdfunc_bt:
-//                    id = 1;
-//                    break;
-//                case R.id.rfconf_bt:
-//                    id = 2;
-//                    break;
-//                case R.id.rfacc_bt:
-//                    id = 3;
-//                    break;
-//                case R.id.rfsel_bt:
-//                    id = 4;
-//                    break;
-//                case R.id.rapid_bt:
-//                    id = 5;
-//                    break;
-//                case R.id.inv_bt:
-//                    id = 6;
-//                    break;
-//                case R.id.bar_bt:
-//                    id = 7;
-//                    break;
-//                case R.id.bar_sb_bt:
-//                    id = 8;
-//                    break;
-//                case R.id.bat_bt:
-//                    id = 9;
-//                    break;
-//                case R.id.info_bt:
-//                    id = 10;
-//                    break;
+
             }
             selectItem(id);
         }
@@ -796,18 +734,11 @@ public class MainActivity  extends AppCompatActivity {
             switchToHome();
         }
 
-//        if (mDrawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
+
         return super.onOptionsItemSelected(item);
     }
 
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
+
     private void selectItem(int position) {
         switch (position) {
             case 0:
@@ -815,65 +746,15 @@ public class MainActivity  extends AppCompatActivity {
                     mBTConnectivityFragment = BTConnectivityFragment.newInstance();
                 mCurrentFragment = mBTConnectivityFragment;
                 break;
-//            case 1:
-//                if (mSDFragment == null)
-//                    mSDFragment = SDFragment.newInstance();
-//                mCurrentFragment = mSDFragment;
-//                break;
-//            case 2:
-//                if (mRFConfigFragment == null)
-//                    mRFConfigFragment = RFConfigFragment.newInstance();
-//                mCurrentFragment = mRFConfigFragment;
-//                break;
-//            case 3:
-//                if (mRFAccessFragment == null)
-//                    mRFAccessFragment = RFAccessFragment.newInstance();
-//                mCurrentFragment = mRFAccessFragment;
-//                break;
-//            case 4:
-//                if (mRFSelectionFragment == null)
-//                    mRFSelectionFragment = RFSelectionFragment.newInstance();
-//                mCurrentFragment = mRFSelectionFragment;
-//                break;
-//            case 5:
-//                if (mRapidFragment == null)
-//                    mRapidFragment = RapidFragment.newInstance();
-//                mCurrentFragment = mRapidFragment;
-//                break;
-//            case 6:
-//                if (mInventoryFragment == null)
-//                    mInventoryFragment = InventoryFragment.newInstance();
-//                mCurrentFragment = mInventoryFragment;
-//                break;
-//            case 7:
-//                if (mBCBarcodeFragment == null)
-//                    mBCBarcodeFragment = BCBarcodeFragment.newInstance();
-//                mCurrentFragment = mBCBarcodeFragment;
-//                break;
-//            case 8:
-//                if (mSBBarcodeFragment == null)
-//                    mSBBarcodeFragment = SBBarcodeFragment.newInstance();
-//                mCurrentFragment = mSBBarcodeFragment;
-//                break;
-//            case 9:
-//                if (mBatteryFragment == null)
-//                    mBatteryFragment = BatteryFragment.newInstance();
-//                mCurrentFragment = mBatteryFragment;
-//                break;
-//            case 10:
-//                if (mInfoFragment == null)
-//                    mInfoFragment = InfoFragment.newInstance();
-//                mCurrentFragment = mInfoFragment;
-//                break;
             default:
                 return;
         }
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         ft.replace(R.id.content, mCurrentFragment);
         ft.commit();
-        mDrawerList.setItemChecked(position, true);
+//        mDrawerList.setItemChecked(position, true);
 //        setTitle(mFunctionsString[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+//        mDrawerLayout.closeDrawer(mDrawerList);
         mUILayout.setVisibility(View.GONE);
     }
 
@@ -912,33 +793,21 @@ public class MainActivity  extends AppCompatActivity {
         if (mCurrentFragment != null)
             switchToHome();
         else
+//            this.deleteDatabase("MyDB1.db");
             super.onBackPressed();
     }
 
-//    private static class InventoryHandler extends Handler {
-//        private final WeakReference<InventoryActivity> mExecutor;
-//        public InventoryHandler(InventoryActivity ac) {
-//            mExecutor = new WeakReference<>(ac);
-//        }
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            InventoryActivity executor = mExecutor.get();
-//            if (executor != null) {
-//                executor.handleMessage(msg);
-//            }
-//        }
-//    }
+
 
     public void handleMessage(Message m) {
         if (D) {
-            Log.d(TAG, "mMainHandler");
-            tvLog.setText("mMainHandler");
+//            Log.d(TAG, "mMainHandler");
+//            tvLog.setText("mMainHandler");
         }
 
         if (D) {
-            Log.d(TAG, "command = " + m.arg1 + " result = " + m.arg2 + " obj = data");
-            tvLog.setText("command = " + m.arg1 + " result = " + m.arg2 + " obj = data");
+//            Log.d(TAG, "command = " + m.arg1 + " result = " + m.arg2 + " obj = data");
+//            tvLog.setText("command = " + m.arg1 + " result = " + m.arg2 + " obj = data");
         }
         switch (m.what) {
             case SDConsts.Msg.SDMsg:
@@ -958,7 +827,7 @@ public class MainActivity  extends AppCompatActivity {
 
     private void switchToHome() {
         try {
-            mDrawerLayout.closeDrawer(mDrawerList);
+//            mDrawerLayout.closeDrawer(mDrawerList);
             if (mCurrentFragment != null) {
                 FragmentTransaction ft = mFragmentManager.beginTransaction();
                 ft.remove(mCurrentFragment);
@@ -1046,7 +915,7 @@ public class MainActivity  extends AppCompatActivity {
             mLocateTag = i.mUt;
             mLocateStartPos = (i.mHasPc ? 0 : 4);
             if (i.mHasPc)
-                mLocateEPC = mLocateTag.substring(4, mLocateTag.length());
+                mLocateEPC = mLocateTag.substring(4);
             else
                 mLocateEPC = mLocateTag;
 
@@ -1111,17 +980,13 @@ public class MainActivity  extends AppCompatActivity {
         AudioAttributes attributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build();
         mSoundPool = new SoundPool.Builder().setAudioAttributes(attributes).setMaxStreams(5).build();
-        if (mSoundPool != null)
-            return true;
-        return false;
+        return mSoundPool != null;
     }
 
     @SuppressWarnings("deprecation")
     private boolean createOldSoundPool(){
         mSoundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-        if (mSoundPool != null)
-            return true;
-        return false;
+        return mSoundPool != null;
     }
 
     private void SoundLoadListener() {
@@ -1172,15 +1037,15 @@ public class MainActivity  extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
         }
-    };
+    }
 
     @Override
     public void onStart() {
 
         // TODO Auto-generated method stub
         if (D){
-            Log.d(TAG, " onStart");
-            tvLog.setText("onStart");
+//            Log.d(TAG, " onStart");
+//            tvLog.setText("onStart");
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -1199,13 +1064,13 @@ public class MainActivity  extends AppCompatActivity {
         if (mReader != null)
             openResult = mReader.SD_Open();
         if (openResult == SDConsts.RF_OPEN_SUCCESS) {
-            Log.i(TAG, "Reader opened");
-            tvLog.setText("Reader opened");
+//            Log.i(TAG, "Reader opened");
+//            tvLog.setText("Reader opened");
         }
         else if (openResult == SDConsts.RF_OPEN_FAIL)
             if (D) {
-                Log.e(TAG, "Reader open failed");
-                tvLog.setText("Reader open Failed");
+//                Log.e(TAG, "Reader open failed");
+//                tvLog.setText("Reader open Failed");
             }
 
         updateConnectState();
@@ -1233,8 +1098,8 @@ public class MainActivity  extends AppCompatActivity {
     public void onResume() {
         // TODO Auto-generated method stub
         if (D) {
-            tvLog.setText("onResume");
-            Log.d(TAG, "onResume");
+//            tvLog.setText("onResume");
+//            Log.d(TAG, "onResume");
         }
         super.onResume();
     }
@@ -1242,26 +1107,27 @@ public class MainActivity  extends AppCompatActivity {
     @Override
     public void onPause() {
         // TODO Auto-generated method stub
-        if (D) {
-            tvLog.setText("onPause");
-            Log.d(TAG, "onPause");
-        }
+//        this.deleteDatabase("MyDB1.db");
         super.onPause();
     }
 
     @Override
     public void onStop() {
         if (D) {
-            tvLog.setText("onStop");
-            Log.d(TAG, "onStop");
+//            tvLog.setText("onStop");
+//            Log.d(TAG, "onStop");
         }
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mReader = BTReader.getReader(mContext, mMainHandler);
-//        if (mReader != null && mReader.BT_GetConnectState() == SDConsts.BTConnectState.CONNECTED) {
-//            mReader.BT_Disconnect();
-//        }
-//        mReader.SD_Close();
+        this.deleteDatabase("MyDB1.db");
+        customAdapter.clearData();
+        customAdapter.notifyDataSetChanged();
+        tvTotal.setText("0");
+        tvFound.setText("0");
+        tvNotfound.setText("0");
+//        SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
+//        customAdapter.notifyDataSetChanged();
 
         mReader.RF_StopInventory();
         pauseStopwatch();
@@ -1279,14 +1145,15 @@ public class MainActivity  extends AppCompatActivity {
         super.onStop();
     }
 
+
     private OnClickListener clearButtonListener = new OnClickListener() {
 
         @Override
         public void onClick(View v) {
             // TODO Auto-generated method stub
             if (D) {
-                tvLog.setText("clearButtonListener");
-                Log.d(TAG, "clearButtonListener");
+//                tvLog.setText("clearButtonListener");
+//                Log.d(TAG, "clearButtonListener");
             }
             clearAll();
         }
@@ -1322,8 +1189,8 @@ public class MainActivity  extends AppCompatActivity {
 
 
             if (D) {
-                tvLog.setText("CountListener");
-                Log.d(TAG, "stopwatchListener");
+//                tvLog.setText("CountListener");
+//                Log.d(TAG, "stopwatchListener");
 //                Toast.makeText(MainActivity.this,"stopwatchlistener",Toast.LENGTH_SHORT).show();
             }
 
@@ -1364,8 +1231,8 @@ public class MainActivity  extends AppCompatActivity {
                             Toast.makeText(mContext, "Start Inventory failed, LOW_BATTERY", Toast.LENGTH_SHORT).show();
                         else
                         if (D) {
-                            tvLog.setText("Start Inventory Failed");
-                            Log.d(TAG, "Start Inventory failed");
+//                            tvLog.setText("Start Inventory Failed");
+//                            Log.d(TAG, "Start Inventory failed");
                         }
                     }
                     break;
@@ -1395,8 +1262,8 @@ public class MainActivity  extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (D) {
-            tvLog.setText("onRequestPermissionsResult");
-            Log.d(TAG, "onRequestPermissionsResult");
+//            tvLog.setText("onRequestPermissionsResult");
+//            Log.d(TAG, "onRequestPermissionsResult");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (mCurrentFragment != null)
@@ -1414,11 +1281,8 @@ public class MainActivity  extends AppCompatActivity {
                             }
                         }
                         if (hasResult) {
-                            if (grantResults != null && grantResults.length != 0 &&
-                                    grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                                mFile = true;
-                            else
-                                mFile = false;
+                            mFile = grantResults != null && grantResults.length != 0 &&
+                                    grantResults[0] == PackageManager.PERMISSION_GRANTED;
                         }
                     }
                     break;
@@ -1435,10 +1299,7 @@ public class MainActivity  extends AppCompatActivity {
             int id = buttonView.getId();
             switch (id) {
                 case R.id.turbo_switch:
-                    if (isChecked)
-                        mIsTurbo = true;
-                    else
-                        mIsTurbo = false;
+                    mIsTurbo = isChecked;
                     break;
 
                 case R.id.file_switch:
@@ -1471,24 +1332,15 @@ public class MainActivity  extends AppCompatActivity {
 
                 case R.id.filter_switch:
                     clearAll();
-                    if (isChecked)
-                        mTagFilter = true;
-                    else
-                        mTagFilter = false;
+                    mTagFilter = isChecked;
                     break;
 
                 case R.id.sound_switch:
-                    if (isChecked)
-                        mSoundPlay = true;
-                    else
-                        mSoundPlay = false;
+                    mSoundPlay = isChecked;
                     break;
 
                 case R.id.mask_switch:
-                    if (isChecked)
-                        mMask = true;
-                    else
-                        mMask = false;
+                    mMask = isChecked;
                     break;
 
                 case R.id.toggle_switch:
@@ -1503,10 +1355,7 @@ public class MainActivity  extends AppCompatActivity {
                     break;
 
                 case R.id.pc_switch:
-                    if (isChecked)
-                        mIgnorePC = true;
-                    else
-                        mIgnorePC = false;
+                    mIgnorePC = isChecked;
                     break;
             }
         }
@@ -1514,8 +1363,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void startStopwatch() {
         if (D) {
-            Log.d(TAG, "startStopwatch");
-            tvLog.setText("startStopwatch");
+//            Log.d(TAG, "startStopwatch");
+//            tvLog.setText("startStopwatch");
         }
 
         if (mStopwatchSvc != null && !mStopwatchSvc.isRunning())
@@ -1526,8 +1375,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void pauseStopwatch() {
         if (D) {
-            Log.d(TAG, "pauseStopwatch");
-            tvLog.setText("pauseStopwatch");
+//            Log.d(TAG, "pauseStopwatch");
+//            tvLog.setText("pauseStopwatch");
         }
 
         if (mStopwatchSvc != null && mStopwatchSvc.isRunning())
@@ -1546,8 +1395,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void stopStopwatch() {
         if (D) {
-            Log.d(TAG, "stopStopwatch");
-            tvLog.setText("stopStopwatch");
+//            Log.d(TAG, "stopStopwatch");
+//            tvLog.setText("stopStopwatch");
         }
 
         if (mStopwatchSvc != null && mStopwatchSvc.isRunning())
@@ -1565,8 +1414,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void updateCountText() {
         if (D) {
-            Log.d(TAG, "updateCountText");
-            tvLog.setText("updateCountText");
+//            Log.d(TAG, "updateCountText");
+//            tvLog.setText("updateCountText");
         }
         String text = Integer.toString(mAdapter.getCount());
         mCountText.setText(text);
@@ -1574,8 +1423,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void updateTimerText() {
         if (D) {
-            Log.d(TAG, "updateTimerText");
-            tvLog.setText("updateTimerText");
+//            Log.d(TAG, "updateTimerText");
+//            tvLog.setText("updateTimerText");
         }
         if (mStopwatchSvc != null)
             mTimerText.setText(mStopwatchSvc.getFormattedElapsedTime());
@@ -1583,8 +1432,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void updateSpeedCountText() {
         if (D) {
-            Log.d(TAG, "updateSpeedCountText");
-            tvLog.setText("updateSpeedCountText");
+//            Log.d(TAG, "updateSpeedCountText");
+//            tvLog.setText("updateSpeedCountText");
         }
         String speedStr = "";
         double value = 0;
@@ -1608,7 +1457,7 @@ public class MainActivity  extends AppCompatActivity {
                 mOldSec = sec;
                 Activity activity = MainActivity.this;
                 if (activity != null)
-                    speedStr = Double.toString(value) + activity.getString(R.string.speed_postfix_str);
+                    speedStr = value + activity.getString(R.string.speed_postfix_str);
                 mSpeedCountText.setText(speedStr);
             }
         }
@@ -1616,8 +1465,8 @@ public class MainActivity  extends AppCompatActivity {
 
     private void updateAvrSpeedCountText() {
         if (D) {
-            Log.d(TAG, "updateAvrSpeedCountText");
-            tvLog.setText("updateAvrSpeedCountText");
+//            Log.d(TAG, "updateAvrSpeedCountText");
+//            tvLog.setText("updateAvrSpeedCountText");
         }
         String speedStr = "";
         double value = 0;
@@ -1638,7 +1487,7 @@ public class MainActivity  extends AppCompatActivity {
 
             Activity activity = MainActivity.this;
             if (activity != null)
-                speedStr = Double.toString(value) + activity.getString(R.string.speed_postfix_str);
+                speedStr = value + activity.getString(R.string.speed_postfix_str);
             mAvrSpeedCountTest.setText(speedStr);
         }
     }
@@ -1667,8 +1516,8 @@ public class MainActivity  extends AppCompatActivity {
         public void onServiceConnected(ComponentName arg0, IBinder arg1) {
             // TODO Auto-generated method stub
             if (D) {
-                Log.d(TAG, "onServiceConnected");
-                tvLog.setText("onServiceConnected");
+//                Log.d(TAG, "onServiceConnected");
+//                tvLog.setText("onServiceConnected");
             }
 
             mStopwatchSvc = ((StopwatchService.LocalBinder)arg1).getService(mUpdateStopwatchHandler);
@@ -1678,8 +1527,8 @@ public class MainActivity  extends AppCompatActivity {
         public void onServiceDisconnected(ComponentName arg0) {
             // TODO Auto-generated method stub
             if (D) {
-                Log.d(TAG, "onServiceDisconnected");
-                tvLog.setText("onServiceDisconnected");
+//                Log.d(TAG, "onServiceDisconnected");
+//                tvLog.setText("onServiceDisconnected");
             }
 
             mStopwatchSvc = null;
@@ -1688,16 +1537,16 @@ public class MainActivity  extends AppCompatActivity {
 
     private void bindStopwatchSvc() {
         if (D) {
-            Log.d(TAG, "bindStopwatchSvc");
-            tvLog.setText("bindStopwatchSvc");
+//            Log.d(TAG, "bindStopwatchSvc");
+//            tvLog.setText("bindStopwatchSvc");
         }
         mContext.bindService(new Intent(mContext, StopwatchService.class), mStopwatchSvcConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void unbindStopwatchSvc() {
         if (D) {
-            Log.d(TAG, "unbindStopwatchSvc");
-            tvLog.setText("unbindStopwatchSvc");
+//            Log.d(TAG, "unbindStopwatchSvc");
+//            tvLog.setText("unbindStopwatchSvc");
         }
         try {
             if (mStopwatchSvc != null)
@@ -1725,13 +1574,13 @@ public class MainActivity  extends AppCompatActivity {
 
     public void handleUpdateStopwatchHandler(Message m) {
         if (D) {
-            Log.d(TAG, "mUpdateStopwatchHandler");
-            tvLog.setText("mUpdateStopwatchHandler");
+//            Log.d(TAG, "mUpdateStopwatchHandler");
+//            tvLog.setText("mUpdateStopwatchHandler");
         }
         if (m.what == StopwatchService.TICK_WHAT) {
             if (D) {
-                Log.d(TAG, "received stopwatch message");
-                tvLog.setText("received stopwatch message");
+//                Log.d(TAG, "received stopwatch message");
+//                tvLog.setText("received stopwatch message");
             }
 
             mTickCount++;
@@ -1770,12 +1619,12 @@ public class MainActivity  extends AppCompatActivity {
 
     public void handleMainHandler(Message m) {
         if (D) {
-            Log.d(TAG, "mMainHandler");
-            tvLog.setText("mMainHandler");
+//            Log.d(TAG, "mMainHandler");
+//            tvLog.setText("mMainHandler");
         }
         if (D) {
-            Log.d(TAG, "m arg1 = " + m.arg1 + " arg2 = " + m.arg2);
-            tvLog.setText("m arg1 = " + m.arg1 + " arg2 = " + m.arg2);
+//            Log.d(TAG, "m arg1 = " + m.arg1 + " arg2 = " + m.arg2);
+//            tvLog.setText("m arg1 = " + m.arg1 + " arg2 = " + m.arg2);
         }
         switch (m.what) {
             case SDConsts.Msg.SDMsg:
@@ -1801,8 +1650,8 @@ public class MainActivity  extends AppCompatActivity {
                                 Toast.makeText(mContext, "Start Inventory failed, LOW_BATTERY", Toast.LENGTH_SHORT).show();
                             else
                             if (D) {
-                                Log.d(TAG, "Start Inventory failed");
-                                tvLog.setText("Start Inventory failed");
+//                                Log.d(TAG, "Start Inventory failed");
+//                                tvLog.setText("Start Inventory failed");
                             }
                         }
                         break;
@@ -1829,8 +1678,8 @@ public class MainActivity  extends AppCompatActivity {
                     case SDConsts.SDCmdMsg.SLED_BATTERY_STATE_CHANGED:
                         //Toast.makeText(mContext, "Battery state = " + m.arg2, Toast.LENGTH_SHORT).show();
                         if (D) {
-                            Log.d(TAG, "Battery state = " + m.arg2);
-                            tvLog.setText("Battery state = " + m.arg2);
+//                            Log.d(TAG, "Battery state = " + m.arg2);
+//                            tvLog.setText("Battery state = " + m.arg2);
                         }
                         mBatteryText.setText("" + m.arg2 + "%");
                         break;
@@ -1868,8 +1717,8 @@ public class MainActivity  extends AppCompatActivity {
             case SDConsts.Msg.BTMsg:
                 if (m.arg1 == SDConsts.BTCmdMsg.SLED_BT_CONNECTION_STATE_CHANGED) {
                     if (D) {
-                        Log.d(TAG, "SLED_BT_CONNECTION_STATE_CHANGED = " + m.arg2);
-                        tvLog.setText("SLED_BT_CONNECTION_STATE_CHANGED = " + m.arg2);
+//                        Log.d(TAG, "SLED_BT_CONNECTION_STATE_CHANGED = " + m.arg2);
+//                        tvLog.setText("SLED_BT_CONNECTION_STATE_CHANGED = " + m.arg2);
                     }
                     if (mReader.BT_GetConnectState() != SDConsts.BTConnectState.CONNECTED) {
                         if (mInventory) {
@@ -1920,30 +1769,32 @@ public class MainActivity  extends AppCompatActivity {
         String originalData = data;
         if (data.contains(";")) {
             if (D) {
-                Log.d(TAG, "full tag = " + data);
-                tvLog.setText("full tag = " + data);
+//                Log.d(TAG, "full tag = " + data);
+//                tvLog.setText("full tag = " + data);
             }
             //full tag example(with optional value)
             //1) RF_PerformInventory => "3000123456783333444455556666;rssi:-54.8"
             //2) RF_PerformInventoryWithLocating => "3000123456783333444455556666;loc:64"
             int infoTagPoint = data.indexOf(';');
-            info = data.substring(infoTagPoint, data.length());
+            info = data.substring(infoTagPoint);
             int infoPoint = info.indexOf(':') + 1;
-            info = info.substring(infoPoint, info.length());
+            info = info.substring(infoPoint);
             if (D) {
-                Log.d(TAG, "info tag = " + info);
-                tvLog.setText("info tag = " + info);
+//                Log.d(TAG, "info tag = " + info);
+//                tvLog.setText("info tag = " + info);
             }
             data = data.substring(4, infoTagPoint);
             tvRfidno.setText(data);
 
                 if(ProductNo.contains(data)){
                     int index = ProductNo.indexOf(data);
-                    Toast.makeText(MainActivity.this,"Found", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this,"Found", Toast.LENGTH_SHORT).show();
+//                    Log.i(TAG, "Reader opene");
                     SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
-                    String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = "+data;
+                    String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+data+"'";
                     mydatabase.execSQL(sql);
                     Found.set(index, "1");
+
                     customAdapter.notifyDataSetChanged();
                     Cursor cursor= controller.readAllData();
                     tvTotal.setText(String.valueOf(cursor.getCount()));
@@ -1954,7 +1805,7 @@ public class MainActivity  extends AppCompatActivity {
                     tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
                 }
                 else{
-                    Log.d(TAG, "not found");
+//                    Log.d(TAG, "not found");
                 }
 
 
@@ -1962,8 +1813,8 @@ public class MainActivity  extends AppCompatActivity {
 
 
             if (D) {
-                Log.d(TAG, "data tag = " + data);
-                tvLog.setText("data tag = " + data);
+//                Log.d(TAG, "data tag = " + data);
+//                tvLog.setText("data tag = " + data);
             }
         }
 
@@ -1981,7 +1832,7 @@ public class MainActivity  extends AppCompatActivity {
             if (activity != null)
                 info = prefix + info;
         }
-        mAdapter.addItem(-1, data, info, !mIgnorePC, mTagFilter);
+//        mAdapter.addItem(-1, data, info, !mIgnorePC, mTagFilter);
 
 
         if (mFileManager != null && mFile)
@@ -2056,10 +1907,7 @@ public class MainActivity  extends AppCompatActivity {
 
         if (mReader != null) {
             int toggle = mReader.RF_GetToggle();
-            if (toggle == SDConsts.RFToggle.ON)
-                mToggle = true;
-            else
-                mToggle = false;
+            mToggle = toggle == SDConsts.RFToggle.ON;
             mToggleSwitch.setChecked(mToggle);
 
             int session = mReader.RF_GetSession();
@@ -2071,10 +1919,7 @@ public class MainActivity  extends AppCompatActivity {
                 mSelFlagSpin.setSelection(flag - 1);
 
             int rssi = mReader.RF_GetRssiTrackingState();
-            if (rssi == SDConsts.RFRssi.ON)
-                mRssi = true;
-            else
-                mRssi = false;
+            mRssi = rssi == SDConsts.RFRssi.ON;
             mRssiSwitch.setChecked(mRssi);
 
             int battery = mReader.SD_GetBatteryStatus();

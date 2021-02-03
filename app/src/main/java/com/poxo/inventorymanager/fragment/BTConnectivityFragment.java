@@ -105,40 +105,42 @@ public class BTConnectivityFragment extends Fragment {
 
         mOptionHandler = ((MainActivity)getActivity()).mUpdateConnectHandler;
 
-        mActionTextView = (TextView)v.findViewById(R.id.action_textview);
+        mActionTextView = v.findViewById(R.id.action_textview);
         
-        mMessageTextView = (TextView)v.findViewById(R.id.message_textview);
+        mMessageTextView = v.findViewById(R.id.message_textview);
 
-        mConnectedDeviceTextView = (TextView)v.findViewById(R.id.connected_device_textview);
+        mConnectedDeviceTextView = v.findViewById(R.id.connected_device_textview);
         
-        mDisconnectBt = (Button)v.findViewById(R.id.bt_disconnect);
+        mDisconnectBt = v.findViewById(R.id.bt_disconnect);
         mDisconnectBt.setOnClickListener(buttonListener);
         
-        mScanBt = (Button)v.findViewById(R.id.bt_scan);
+        mScanBt = v.findViewById(R.id.bt_scan);
         mScanBt.setOnClickListener(buttonListener);
         
-        mStopScanBt = (Button)v.findViewById(R.id.bt_stop_scan);
+        mStopScanBt = v.findViewById(R.id.bt_stop_scan);
         mStopScanBt.setOnClickListener(buttonListener);
         
-        mEnableBt = (Button)v.findViewById(R.id.bt_enable);
+        mEnableBt = v.findViewById(R.id.bt_enable);
         mEnableBt.setOnClickListener(buttonListener);
 
-        mDisableBt = (Button)v.findViewById(R.id.bt_disable);
+        mDisableBt = v.findViewById(R.id.bt_disable);
         mDisableBt.setOnClickListener(buttonListener);
         
-        mGetBtStateBt = (Button)v.findViewById(R.id.bt_state);
+        mGetBtStateBt = v.findViewById(R.id.bt_state);
         mGetBtStateBt.setOnClickListener(buttonListener);
         
-        mProgressBar = (ProgressBar)v.findViewById(R.id.scan_progress);
+        mProgressBar = v.findViewById(R.id.scan_progress);
         
-        mRemoveAllPairedBt = (Button)v.findViewById(R.id.bt_remove_pair);
+        mRemoveAllPairedBt = v.findViewById(R.id.bt_remove_pair);
         mRemoveAllPairedBt.setOnClickListener(buttonListener);
         
-        mDeviceList = (ListView)v.findViewById(R.id.device_list);
+        mDeviceList = v.findViewById(R.id.device_list);
         mDeviceList.setOnItemClickListener(listListener);
         mAdapter = new TagListAdapter(mContext);
+
         
         mDeviceList.setAdapter(mAdapter);
+
         
         return v;
     }
@@ -444,8 +446,14 @@ public class BTConnectivityFragment extends Fragment {
             mAdapter.removeAllItem();
             Set<BluetoothDevice> pairedDevices = mReader.BT_GetPairedDevices();
             if (pairedDevices != null && pairedDevices.size() > 0) {
-                for (BluetoothDevice d : pairedDevices)
-                    mAdapter.addItem(-1, d.getName() + "\n" + "[paired device]", d.getAddress(), false, false);
+                for (BluetoothDevice d : pairedDevices){
+                    if(d.getName().equals("RFR-CD317")){
+                        mAdapter.addItem(-1, d.getName() + "\n" + "[paired device]", d.getAddress(), false, false);
+                    }
+
+
+                }
+
             }
         }
     }

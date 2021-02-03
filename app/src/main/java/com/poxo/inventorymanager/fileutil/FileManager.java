@@ -163,9 +163,7 @@ public class FileManager {
     }
 
     private boolean isWriteAvailable() {
-        if (getAvailableSpaceInMB() > MINIMUM_SPACE_MB_SIZE)
-            return true;
-        return false;
+        return getAvailableSpaceInMB() > MINIMUM_SPACE_MB_SIZE;
     }
 
     private long getAvailableSpaceInMB(){
