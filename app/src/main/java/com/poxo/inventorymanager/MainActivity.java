@@ -109,15 +109,6 @@ import co.kr.bluebird.sled.BTReader;
 import co.kr.bluebird.sled.SDConsts;
 import co.kr.bluebird.sled.SelectionCriterias;
 
-
-
-
-
-
-
-
-
-
 public class MainActivity  extends AppCompatActivity {
 
     static {
@@ -254,7 +245,6 @@ public class MainActivity  extends AppCompatActivity {
 
     private Spinner mSelFlagSpin;
     private ArrayAdapter<CharSequence> mSelFlagChar;
-    //private int mCurrentPower;
 
     private int mTickCount = 0;
 
@@ -262,29 +252,11 @@ public class MainActivity  extends AppCompatActivity {
 
     private MainHandler mMainHandler = new MainHandler(this);
 
-//    public static InventoryFragment newInstance() {
-//        return new InventoryFragment();
-//    }
-
-    ///////////////////////////////////////////////////////////////////
-
-//    private static final boolean DM = Constants.MAIN_D;
-
     public static final int MSG_OPTION_CONNECT_STATE_CHANGED = 0;
 
     public static final int MSG_BACK_PRESSED = 2;
 
     private String[] mFunctionsString;
-
-//    private DrawerLayout mDrawerLayout;
-
-//    private ListView mDrawerList;
-
-//    private ActionBarDrawerToggle mDrawerToggle;
-
-//    private BTReader mReader;
-
-//    private Context mContext;
 
     private FragmentManager mFragmentManager;
 
@@ -301,12 +273,6 @@ public class MainActivity  extends AppCompatActivity {
 
 
     public final UpdateConnectHandler mUpdateConnectHandler = new UpdateConnectHandler(this);
-
-
-
-
-
-
 
     TextView lbl;
     XlsxCon controller = new XlsxCon(MainActivity.this);
@@ -353,6 +319,8 @@ public class MainActivity  extends AppCompatActivity {
     int foundcount;
     String value="RFID Code";
 
+    SQLiteDatabase mydatabase;
+
 
 
     @Override
@@ -387,17 +355,11 @@ public class MainActivity  extends AppCompatActivity {
         OriCost = new ArrayList<>();
         CurCost = new ArrayList<>();
         NetBlock = new ArrayList<>();
-
-//        SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
-//        mydatabase.execSQL("DROP TABLE "+Inventory);
-
-
+        mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
 
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 1);
-
-        ////////////////////////////////////////////////////////vvvvvvvvvvFROM INVENTORY ACTIVTIY IN RFIDTEST APPLICATIONvvvvvvvvvv//////////////////////////////////////
 
         mContext=this;
 
@@ -477,53 +439,26 @@ public class MainActivity  extends AppCompatActivity {
         mAdapter = new TagListAdapter(mContext);
         mRfidList.setAdapter(mAdapter);
 
-        ///////////////////////////////////////////////////////////////////
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
-//        getActionBar().setDisplayShowHomeEnabled(false);
-
-//        mDrawerLayout = findViewById(R.id.drawer_layout);
-//        mDrawerList = findViewById(R.id.left_drawer);
-
-//        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
         mUILayout = findViewById(R.id.ui_layout);
 
         mCurrentFragment = null;
 
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
-        int buttonHeight = size.x / 3;
 
         mConnectButton = findViewById(R.id.connect_BT);
 
-
-
         mConnectButton.setOnClickListener(buttonListener);
 
-
-
         mFunctionsString = getResources().getStringArray(R.array.functions_array);
-//        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mFunctionsString));
-//        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
         mFragmentManager = getFragmentManager();
 
         mIsConnected = false;
 
-
-
-
-
         bindStopwatchSvc();
 
-
-        ////////////////////////////////////////////////////////^^^^^^^^^^^FROM INVENTORY ACTIVTIY IN RFIDTEST APPLICATION^^^^^^^^^^//////////////////////////////////////
-
-
-
-
         lbl = findViewById(R.id.txtresulttext);
-//        lv = getListView();
+
         tableName = "Inventory";
 
         btnimport.setOnClickListener(new View.OnClickListener() {
@@ -552,20 +487,62 @@ public class MainActivity  extends AppCompatActivity {
                 }
                 else{
                     if(ProductNo.contains(searchTerm)){
-                        int index = ProductNo.indexOf(searchTerm);
-//                        Toast.makeText(MainActivity.this,"Found", Toast.LENGTH_SHORT).show();
-                        SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
-                        String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+searchTerm+"'";
-                        mydatabase.execSQL(sql);
-                        Found.set(index, "1");
-                        customAdapter.notifyDataSetChanged();
-                        Cursor cursor= controller.readAllData();
-                        tvTotal.setText(String.valueOf(cursor.getCount()));
-                        Cursor cursor1= controller.getFoundCount();
-                        cursor1.moveToFirst();
-                        tvFound.setText(String.valueOf(cursor1.getInt(0)));
-                        cursor1.moveToFirst();
-                        tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+
+                        final int index = ProductNo.indexOf(searchTerm);
+                          if(Found.get(index).equals("0")){
+//                            Runnable updateRunnable = new Runnable() {
+//                                public void run() {
+//                                    String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+searchTerm+"'";
+//                                    mydatabase.execSQL(sql);
+//                                    Found.set(index, "1");
+//                                    MainActivity.this.runOnUiThread(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            //TODO update UI
+//                                            customAdapter.notifyItemChanged(index);
+//                                            Cursor cursor= controller.readAllData();
+//                                            tvTotal.setText(String.valueOf(cursor.getCount()));
+//                                            Cursor cursor1= controller.getFoundCount();
+//                                            cursor1.moveToFirst();
+//                                            tvFound.setText(String.valueOf(cursor1.getInt(0)));
+//                                            cursor1.moveToFirst();
+//                                            tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+//                                        }
+//                                    });
+//                                }
+//                            };
+//
+//
+//                            Handler threadHandler = new Handler();
+//                            threadHandler.post(updateRunnable);
+
+                            new Thread(new Runnable() {
+                                @Override public void run() {
+                                // background code
+                                    String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+searchTerm+"'";
+                                    mydatabase.execSQL(sql);
+                                    Found.set(index, "1");
+                                    MainActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //TODO update UI
+                                            customAdapter.notifyItemChanged(index);
+                                            Cursor cursor= controller.readAllData();
+                                            tvTotal.setText(String.valueOf(cursor.getCount()));
+                                            Cursor cursor1= controller.getFoundCount();
+                                            cursor1.moveToFirst();
+                                            tvFound.setText(String.valueOf(cursor1.getInt(0)));
+                                            cursor1.moveToFirst();
+                                            tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+                                        }
+                                    });
+                                }
+                            }).start();
+                          }
+                          else{
+
+                        }
+
                     }
                     else{
 //                        Toast.makeText(MainActivity.this,"Not Found", Toast.LENGTH_SHORT).show();
@@ -636,12 +613,8 @@ public class MainActivity  extends AppCompatActivity {
             case requestcode:
                 String FilePath = data.getData().getPath();
 
-//                Log.e("File path", FilePath);
-
                 if (FilePath.contains("/root_path"))
                     FilePath = FilePath.replace("/root_path", "");
-
-//                Log.e("New File path", FilePath);
 
                 try {
                     if (resultCode == RESULT_OK) {
@@ -651,13 +624,10 @@ public class MainActivity  extends AppCompatActivity {
 
                         try {
                             inStream = new FileInputStream(FilePath);
-//                            Log.e("Extension", FilePath.substring(FilePath.lastIndexOf(".")));
 
                             if (FilePath.substring(FilePath.lastIndexOf(".")).equals(".xls")) {
-//                                Log.e("File Type", "Selected file is XLS");
                                 wb = new HSSFWorkbook(inStream);
                             } else if (FilePath.substring(FilePath.lastIndexOf(".")).equals(".xlsx")) {
-//                                Log.e("File Type", "Selected file is XLSX");
                                 wb = new XSSFWorkbook(inStream);
                             } else {
                                 wb = null;
@@ -686,9 +656,7 @@ public class MainActivity  extends AppCompatActivity {
                     }
                 } catch (Exception ex) {
                     lbl.setText(ex.getMessage() + "Second");
-//                    Log.e("POI Error", ex.getMessage());
                 }
-
                 SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
                 mydatabase.execSQL("DELETE FROM " + Inventory+ " WHERE "+ProductNamesql+"='"+value+"'");
 
@@ -698,8 +666,6 @@ public class MainActivity  extends AppCompatActivity {
 
         }
     }
-    /////////////////////vvvvvvvvvvvvvvvvvvvvvvFROM INVENTORY ACTIVITY IN RFIDTESTvvvvvvvvvvvvvvvvvvv////////////////////////
-
     public View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -752,9 +718,6 @@ public class MainActivity  extends AppCompatActivity {
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         ft.replace(R.id.content, mCurrentFragment);
         ft.commit();
-//        mDrawerList.setItemChecked(position, true);
-//        setTitle(mFunctionsString[position]);
-//        mDrawerLayout.closeDrawer(mDrawerList);
         mUILayout.setVisibility(View.GONE);
     }
 
@@ -1120,14 +1083,13 @@ public class MainActivity  extends AppCompatActivity {
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mReader = BTReader.getReader(mContext, mMainHandler);
-        this.deleteDatabase("MyDB1.db");
-        customAdapter.clearData();
-        customAdapter.notifyDataSetChanged();
-        tvTotal.setText("0");
-        tvFound.setText("0");
-        tvNotfound.setText("0");
-//        SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
+//        this.deleteDatabase("MyDB1.db");
+//        customAdapter.clearData();
 //        customAdapter.notifyDataSetChanged();
+//        tvTotal.setText("0");
+//        tvFound.setText("0");
+//        tvNotfound.setText("0");
+
 
         mReader.RF_StopInventory();
         pauseStopwatch();
@@ -1787,22 +1749,62 @@ public class MainActivity  extends AppCompatActivity {
             tvRfidno.setText(data);
 
                 if(ProductNo.contains(data)){
-                    int index = ProductNo.indexOf(data);
-//                    Toast.makeText(MainActivity.this,"Found", Toast.LENGTH_SHORT).show();
-//                    Log.i(TAG, "Reader opene");
-                    SQLiteDatabase mydatabase=openOrCreateDatabase("MyDB1.db",MODE_PRIVATE,null);
-                    String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+data+"'";
-                    mydatabase.execSQL(sql);
-                    Found.set(index, "1");
+                    final int index = ProductNo.indexOf(data);
+                    if(Found.get(index).equals("0")){
+                        final String finalData = data;
+                        new Thread(new Runnable() {
+                            @Override public void run() {
+                                //TODO background code
+                                String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+ finalData +"'";
+                                mydatabase.execSQL(sql);
+                                Found.set(index, "1");
+                                MainActivity.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //TODO update UI
+                                        customAdapter.notifyItemChanged(index);
+                                        Cursor cursor= controller.readAllData();
+                                        tvTotal.setText(String.valueOf(cursor.getCount()));
+                                        Cursor cursor1= controller.getFoundCount();
+                                        cursor1.moveToFirst();
+                                        tvFound.setText(String.valueOf(cursor1.getInt(0)));
+                                        cursor1.moveToFirst();
+                                        tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+                                    }
+                                });
+                            }
+                        }).start();
 
-                    customAdapter.notifyDataSetChanged();
-                    Cursor cursor= controller.readAllData();
-                    tvTotal.setText(String.valueOf(cursor.getCount()));
-                    Cursor cursor1= controller.getFoundCount();
-                    cursor1.moveToFirst();
-                    tvFound.setText(String.valueOf(cursor1.getInt(0)));
-                    cursor1.moveToFirst();
-                    tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+//                        final String finalData = data;
+//                        Runnable updateRunnable = new Runnable() {
+//                            public void run() {
+//                                String sql = "UPDATE "+ Inventory +" SET Found = '1' WHERE ProductNo = '"+ finalData +"'";
+//                                mydatabase.execSQL(sql);
+//                                Found.set(index, "1");
+//                                MainActivity.this.runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        //TODO update UI
+//                                        customAdapter.notifyItemChanged(index);
+//                                        Cursor cursor= controller.readAllData();
+//                                        tvTotal.setText(String.valueOf(cursor.getCount()));
+//                                        Cursor cursor1= controller.getFoundCount();
+//                                        cursor1.moveToFirst();
+//                                        tvFound.setText(String.valueOf(cursor1.getInt(0)));
+//                                        cursor1.moveToFirst();
+//                                        tvNotfound.setText(String.valueOf((cursor.getCount())-(cursor1.getInt(0))));
+//                                    }
+//                                });
+//                            }
+//                        };
+//
+//
+//                        Handler threadHandler = new Handler();
+//                        threadHandler.post(updateRunnable);
+                    }
+                    else{
+
+                    }
                 }
                 else{
 //                    Log.d(TAG, "not found");

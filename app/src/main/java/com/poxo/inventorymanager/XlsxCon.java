@@ -127,35 +127,4 @@ public class XlsxCon {
         return cursor;
     }
 
-    public ArrayList<HashMap<String, String>> getProducts() {
-        ArrayList<HashMap<String, String>> prolist;
-        prolist = new ArrayList<HashMap<String, String>>();
-        String selectQuery = "SELECT * FROM " + Inventory;
-        SQLiteDatabase database = dbHelper.getReadableDatabase();
-        Cursor cursor = database.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            do {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put(ProductName, cursor.getString(1));
-                map.put(ProductNo, cursor.getString(2));
-                map.put(Found, cursor.getString(3));
-                map.put(AssetNo, cursor.getString(4));
-
-                map.put(MajorCat, cursor.getString(5));
-                map.put(MinorCat, cursor.getString(6));
-                map.put(AssetName, cursor.getString(7));
-                map.put(TagState, cursor.getString(8));
-
-                map.put(Type, cursor.getString(9));
-                map.put(Remarks, cursor.getString(10));
-                map.put(AssetCap, cursor.getString(11));
-                map.put(Quant, cursor.getString(12));
-                map.put(OriCost, cursor.getString(13));
-                map.put(CurCost, cursor.getString(14));
-                map.put(NetBlock, cursor.getString(15));
-                prolist.add(map);
-            } while (cursor.moveToNext());
-        }
-        return prolist;
-    }
 }

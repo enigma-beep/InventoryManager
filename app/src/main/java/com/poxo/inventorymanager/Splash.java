@@ -38,6 +38,13 @@ public class Splash extends AppCompatActivity {
 
         c.close();
 
+        this.deleteDatabase("MyDB1.db");
+//        customAdapter.clearData();
+//        customAdapter.notifyDataSetChanged();
+//        tvTotal.setText("0");
+//        tvFound.setText("0");
+//        tvNotfound.setText("0");
+
 
         Thread timer=new Thread()
         {
