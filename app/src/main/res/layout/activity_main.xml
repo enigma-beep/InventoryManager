@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/main"
+    android:background="@color/secondary"
     tools:context=".MainActivity">
 
 
@@ -30,41 +30,44 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="37dp"
             android:src="@drawable/fortis"
             android:layout_weight="1"
             android:visibility="invisible"/>
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="37dp"
             android:src="@drawable/fortis"
             android:layout_weight="1"
             android:visibility="invisible"/>
         <ImageView
+            android:layout_marginTop="10dp"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:src="@drawable/fortis"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="37dp"
             android:src="@drawable/fortis"
             android:layout_weight="1"
             android:visibility="invisible"/>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <ImageButton
+                android:id="@+id/connect_BT"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/bluetooth"
-                android:id="@+id/connect_BT"/>
-        </LinearLayout>
+                android:background="@drawable/bluetooth" />
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -73,19 +76,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="0dp"
-        android:weightSum="4">
+        android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fixed Asset Management"
+            android:text="Inventory Tracking"
             android:fontFamily="@font/productsansbold"
             android:textSize="24sp"
-            android:textColor="@color/paragraph"
-            android:layout_gravity="left"
-            android:layout_weight="3"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"/>
 
         <androidx.cardview.widget.CardView
@@ -100,7 +100,8 @@
                 android:background="#1083f5"
                 android:text=" UPLOAD EXCEL "
                 android:textColor="#ffffff"
-                android:fontFamily="sans-serif-condensed-medium"/>
+                android:fontFamily="sans-serif-condensed-medium"
+                android:visibility="gone"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -112,7 +113,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:visibility="gone">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -181,12 +183,12 @@
             android:layout_gravity="end"
             android:layout_weight="1"
             android:layout_marginRight="5dp"
-
-            android:backgroundTint="@color/button"
-            android:fontFamily="sans-serif-condensed-medium"/>
+            android:backgroundTint="@color/colorBlue"
+            android:fontFamily="@font/productsansbold"/>
 
 
         <Button
+            app:cornerRadius="12dp"
             android:id="@+id/stop_inven_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -197,7 +199,7 @@
             android:layout_marginLeft="5dp"
 
             android:text="@string/stop_inven_str"
-            android:fontFamily="sans-serif-condensed-medium"/>
+            android:fontFamily="@font/productsansbold"/>
 
     </LinearLayout>
 
@@ -358,7 +360,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:background="@color/button"
+                android:background="@color/subtleGreen"
                 android:orientation="horizontal"
                 android:scrollbars="horizontal">
 

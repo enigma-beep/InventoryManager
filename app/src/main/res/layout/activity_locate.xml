@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocateActivity">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:id="@+id/poxoLogo"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/transparentwithtext"
+        android:layout_centerInParent="true"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:id="@+id/fortisLogo"
+        android:src="@drawable/fortis"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fortisLogo"
+        android:text="Locate Tag"
+        android:fontFamily="@font/productsansbold"
+        android:id="@+id/titleSearch"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="22sp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleSearch"
+        android:layout_above="@id/poxoLogo"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/greenishWhite"
+
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/tag_locate_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:paddingTop="15dp"
+                android:layout_marginTop="70dp"
+                android:layout_width="80dp"
+                android:paddingBottom="15dp"
+                android:layout_height="400dp"
+                android:progressDrawable="@drawable/vertical_progress"
+                android:layout_gravity="center"
+                android:max="100" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Locating:"
+                    android:fontFamily="@font/productsansregular"
+                    android:layout_marginRight="15dp"/>
+                <TextView
+
+                    android:id="@+id/textViewtest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:fontFamily="@font/productsansbold"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible"
+                    android:layout_gravity="center"/>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

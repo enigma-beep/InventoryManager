@@ -36,6 +36,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.poxo.inventorymanager.Constants;
+import com.poxo.inventorymanager.FileChooserActivity;
 import com.poxo.inventorymanager.MainActivity;
 import com.poxo.inventorymanager.R;
 import com.poxo.inventorymanager.control.ListItem;
@@ -103,7 +104,7 @@ public class BTConnectivityFragment extends Fragment {
 
         mFragment = this;
 
-        mOptionHandler = ((MainActivity)getActivity()).mUpdateConnectHandler;
+        mOptionHandler = ((FileChooserActivity)getActivity()).mUpdateConnectHandler;
 
         mActionTextView = v.findViewById(R.id.action_textview);
         
@@ -471,6 +472,6 @@ public class BTConnectivityFragment extends Fragment {
     
     private void updateConnectStateTextView() {
         if (mOptionHandler != null)
-            mOptionHandler.obtainMessage(MainActivity.MSG_OPTION_CONNECT_STATE_CHANGED).sendToTarget();
+            mOptionHandler.obtainMessage(FileChooserActivity.MSG_OPTION_CONNECT_STATE_CHANGED).sendToTarget();
     }
 }

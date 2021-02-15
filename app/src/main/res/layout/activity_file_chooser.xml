@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FileChooserActivity"
+    android:fillViewport="true"
+    android:background="@color/secondary">
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+
+    <LinearLayout
+        android:id="@+id/ui_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="37dp"
+            android:id="@+id/fortisLogo"
+            android:src="@drawable/fortis"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bluetoothLayout"
+        android:layout_below="@id/fortisLogo">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Fixed Asset Management"
+            android:fontFamily="@font/productsansbold"
+            android:id="@+id/FAM"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:textSize="22sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/FAM"
+            android:id="@+id/bluetoothCard"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bluetooth Status:"
+                android:id="@+id/bluetoothStatus"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/productsansbold"/>
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src="@drawable/bluetooth"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="15dp"
+                android:id="@+id/ivBluetooth"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:id="@+id/btStatus"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="center|bottom"
+                android:fontFamily="@font/productsansbold"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/subtleGreen">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Manage"
+                    android:id="@+id/manage_bt"
+                    android:background="@color/subtleGreen"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/productsansbold"/>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bluetoothCard"
+            android:id="@+id/addSheet"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            app:cardCornerRadius="12dp"
+            android:layout_centerInParent="true">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Upload Excel "
+                android:id="@+id/btnAdd"
+                android:background="@color/colorBlue"
+                android:fontFamily="@font/productsansbold"
+                android:textColor="@color/colorWhite"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addSheet"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            app:cardElevation="5dp"
+            android:id="@+id/toolsCard"
+            app:cardCornerRadius="12dp"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fileInfo"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentTop="true">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/excel"
+                        android:id="@+id/excelIcon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="File Name"
+                        android:id="@+id/tvFileName"
+                        android:layout_toRightOf="@id/excelIcon"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/productsansbold"/>
+
+
+
+                </RelativeLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/bluishWhite"
+                    android:id="@+id/fileCard"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_below="@id/fileInfo"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/inventory"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/ivFile"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inventory Tracking"
+                        android:fontFamily="@font/productsansbold"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="65dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/bluetoothCard"
+                        app:cardCornerRadius="12dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:visibility="gone">
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Resume"
+                            android:id="@+id/btnResume"
+                            android:background="@color/colorBlue"
+                            android:fontFamily="@font/productsansbold"
+                            android:textColor="@color/colorWhite"
+                            android:visibility="visible"/>
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="12dp"
+                    android:id="@+id/searchCard"
+                    app:cardBackgroundColor="@color/greenishWhite"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_below="@id/fileCard"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/rfid"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/ivSearch"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Identify"
+                        android:id="@+id/tvSearch"
+                        android:fontFamily="@font/productsansbold"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="65dp"
+                        android:layout_gravity="center_vertical"/>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="12dp"
+                    android:id="@+id/identifyCard"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    app:cardBackgroundColor="@color/bluishWhite"
+                    android:layout_below="@id/searchCard"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/search"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/ivIdentify"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search"
+                        android:id="@+id/tvIdentify"
+                        android:fontFamily="@font/productsansbold"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="65dp"
+                        android:layout_gravity="center_vertical"/>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            app:cardCornerRadius="12dp"
+            android:id="@+id/batteryCard"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:cardElevation="5dp"
+            android:layout_marginBottom="15dp"
+            android:layout_below="@id/toolsCard"
+            android:visibility="visible">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Battery Status"
+                        android:fontFamily="@font/productsansbold"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/batterycharge"
+                            android:id="@+id/ivPhoneBattery"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone Battery: "
+                            android:fontFamily="@font/productsansbold"
+                            android:id="@+id/tvPhonebattery"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="5dp"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/batterycharge"
+                            android:id="@+id/ivScannerBattery"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not Connected"
+                            android:id="@+id/tvScannerBattery"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/productsansbold"/>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:id="@+id/poxoLogo"
+                android:src="@drawable/transparentwithtext"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    </FrameLayout>
+
+
+</ScrollView>

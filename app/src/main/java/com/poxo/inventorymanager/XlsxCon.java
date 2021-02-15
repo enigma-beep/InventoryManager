@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +64,8 @@ public class XlsxCon {
             db = dbHelper.getWritableDatabase();
             int y = (int) db.insert(table, null, values);
             db.close();
-            Log.e("Data Inserted", "Data Inserted");
-            Log.e("y", y + "");
+//            Log.e("Data Inserted", "Data Inserted");
+//            Log.e("y", y + "");
             return y;
         } catch (Exception ex) {
             Log.e("Error Insert", ex.getMessage());

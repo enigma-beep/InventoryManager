@@ -38,7 +38,7 @@ public class Splash extends AppCompatActivity {
 
         c.close();
 
-        this.deleteDatabase("MyDB1.db");
+//        this.deleteDatabase("MyDB1.db");
 //        customAdapter.clearData();
 //        customAdapter.notifyDataSetChanged();
 //        tvTotal.setText("0");
@@ -59,12 +59,12 @@ public class Splash extends AppCompatActivity {
                 {
                     if(viewCount==1) {
                         viewCount++;
-                        Intent i = new Intent(Splash.this, MainActivity.class);
+                        Intent i = new Intent(Splash.this, FileChooserActivity.class);
                         finish();
                         startActivity(i);
                     }
                     else{
-                        Intent i = new Intent(Splash.this, MainActivity.class);
+                        Intent i = new Intent(Splash.this, FileChooserActivity.class);
                         finish();
                         startActivity(i);
                     }

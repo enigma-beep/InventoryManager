@@ -1,6 +1,7 @@
 package com.poxo.inventorymanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         holder.productName.setText(String.valueOf(ProductName.get(position)));
         holder.productNo.setText(String.valueOf(ProductNo.get(position)));
         holder.found.setText(String.valueOf(Found.get(position)));

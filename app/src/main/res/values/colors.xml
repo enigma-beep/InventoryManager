@@ -14,6 +14,12 @@
     <color name="colorGrey">#333333</color>
     <color name="subtleGreen">#31c878</color>
     <color name="colorDark">#181A24</color>
+    <color name="colorBlue">#3da9fc</color>
+
+    <color name="greenishWhite">#e6ffdd</color>
+    <color name="bluishWhite">#d8ecff</color>
+    <color name="bluishtint">#f5fffb</color>
+
 
 
 
@@ -24,7 +30,7 @@
     <color name="paragraph">#222525</color>
     <color name="button">#078080</color>
     <color name="headline">#232323</color>
-    <color name="tertiary">#f45d48</color>
+    <color name="tertiary">#ff5a61</color>
 
 
     <color name="start">#FF0000</color>

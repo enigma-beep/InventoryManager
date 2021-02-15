@@ -95,6 +95,7 @@ import java.lang.ref.WeakReference;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.google.android.material.button.MaterialButton;
 import com.poxo.inventorymanager.Constants;
 import com.poxo.inventorymanager.MainActivity;
 import com.poxo.inventorymanager.R;
@@ -321,6 +322,8 @@ public class MainActivity  extends AppCompatActivity {
 
     SQLiteDatabase mydatabase;
 
+    int power=-1;
+
 
 
     @Override
@@ -447,6 +450,7 @@ public class MainActivity  extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getSize(size);
 
         mConnectButton = findViewById(R.id.connect_BT);
+        mConnectButton.setEnabled(false);
 
         mConnectButton.setOnClickListener(buttonListener);
 
@@ -460,6 +464,15 @@ public class MainActivity  extends AppCompatActivity {
         lbl = findViewById(R.id.txtresulttext);
 
         tableName = "Inventory";
+
+        mReader = BTReader.getReader(mContext, mMainHandler);
+
+        power=mReader.RF_SetRadioPowerState(30);
+        if(power==0){
+//            Toast.makeText(MainActivity.this,"RF_PowerState changed to 30",Toast.LENGTH_SHORT).show();
+        }else{
+//            Toast.makeText(MainActivity.this,"RF_PowerState change failed",Toast.LENGTH_SHORT).show();
+        }
 
         btnimport.setOnClickListener(new View.OnClickListener() {
 
