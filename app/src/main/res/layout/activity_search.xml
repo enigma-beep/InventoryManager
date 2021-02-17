@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:id="@+id/poxoLogo"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/transparentwithtext"
+        android:layout_centerInParent="true"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:id="@+id/fortisLogo"
+        android:src="@drawable/fortis"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fortisLogo"
+        android:text="Identify"
+        android:fontFamily="@font/productsansbold"
+        android:id="@+id/titleSearch"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="22sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleSearch"
+        android:layout_above="@id/poxoLogo"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/scanner"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ivScanner"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ivScanner"
+                    android:text="Press Trigger to Start Scanning"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:boxStrokeColor="@color/subtleGreen">
+                    <EditText
+                        android:id="@+id/etSearchRfid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="RFID No."
+                        android:textSize="12sp"
+                        android:fontFamily="@font/productsansregular"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="12dp">
+
+                    <Button
+                        android:id="@+id/btSearchRfid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Search"
+                        android:fontFamily="@font/productsansbold"
+                        android:background="@color/subtleGreen"
+                        android:textColor="@color/secondary"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="5dp"
+            android:id="@+id/detailsCard"
+            app:cardBackgroundColor="@color/bluishtint"
+            android:visibility="gone">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/rfidimg"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="RFID No"
+                        android:fontFamily="@font/productsansbold"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvRFIDNo"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorBlue"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset No:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Major Category:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Minor Catergory:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset Description:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset Name:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Tagging State:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Type:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Remarks:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset Cap Date:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Quantity:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Original Cost:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Current Cost:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Net Block Period:"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/paragraph"
+
+                                android:layout_marginBottom="20dp"/>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset No"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvAssetNo"
+                                android:layout_marginTop="10dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Major Category"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvMajorCat"
+                                android:layout_marginTop="10dp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Minor Catergory"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvMinorCat"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset Description"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvAssetDesc"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset Name"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvAssetName"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Tagging State"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvTagState"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Type"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvType"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Remarks"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvRemarks"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Asset  Cap Date"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvAssetCap"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Quantity"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvQuant"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Original Cost"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvOriCost"
+                                android:layout_marginTop="10dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Current Cost"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvCurCost"
+                                android:layout_marginTop="10dp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_height="30dp"
+                                android:textSize="15sp"
+                                android:text="Net Block Period"
+                                android:fontFamily="@font/productsansbold"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tvNetBlock"
+                                android:layout_marginTop="10dp"
+
+                                android:layout_marginBottom="20dp"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -337,7 +337,7 @@ public class SearchActivity extends AppCompatActivity {
                 break;
         }
         if (messageStr != null){
-            Toast.makeText(mContext, messageStr, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, messageStr, Toast.LENGTH_SHORT).show();
 
             String searchTerm=data.trim();
             if(ProductNo.contains(searchTerm)) {
