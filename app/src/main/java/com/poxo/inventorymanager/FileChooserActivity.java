@@ -18,6 +18,7 @@ import android.content.IntentFilter;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -187,7 +188,11 @@ public class FileChooserActivity extends AppCompatActivity {
 
 
                 Intent fileintent = new Intent(Intent.ACTION_GET_CONTENT);
-                fileintent.setType("gagt/sdf");
+//                fileintent.setType("gagt/sdf");
+//                fileintent.setType("*/*");
+
+                fileintent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
                 try {
                     startActivityForResult(fileintent, requestcode);
 
@@ -238,11 +243,17 @@ public class FileChooserActivity extends AppCompatActivity {
         switch (requestCode) {
             case requestcode:
                 String FilePath = data.getData().getPath();
+                Uri uri=data.getData();
+
+                if (FilePath.contains("primary:"))
+                    FilePath = FilePath.replace("primary:", "");
+//                Toast.makeText(this,FilePath,Toast.LENGTH_LONG).show();
                 String FileName = FilePath.substring(FilePath.lastIndexOf("/")).replace("/","").trim();
 
                 if (FilePath.contains("/root_path"))
                     FilePath = FilePath.replace("/root_path", "");
-
+                if (FilePath.contains("/root"))
+                    FilePath = FilePath.replace("/root", "");
 
 
                 try {
@@ -252,7 +263,8 @@ public class FileChooserActivity extends AppCompatActivity {
                         Workbook wb = null;
 
                         try {
-                            inStream = new FileInputStream(FilePath);
+//                            inStream = new FileInputStream(FilePath);
+                            inStream = new FileInputStream(this.getContentResolver().openFileDescriptor(uri, "r").getFileDescriptor());
 
                             if (FilePath.substring(FilePath.lastIndexOf(".")).equals(".xls")) {
                                 wb = new HSSFWorkbook(inStream);

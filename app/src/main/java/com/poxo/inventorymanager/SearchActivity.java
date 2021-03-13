@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,8 @@ public class SearchActivity extends AppCompatActivity {
         );
     }
 
+    ImageView mConnectImage;
+
     private BTReader mReader;
 
     private Context mContext;
@@ -53,6 +56,9 @@ public class SearchActivity extends AppCompatActivity {
     private static final String TAG = SearchActivity.class.getSimpleName();
 
     private static final boolean D = Constants.MAIN_D;
+    public static final int MSG_OPTION_CONNECT_STATE_CHANGED = 0;
+    public final SearchActivity.UpdateConnectHandler mUpdateConnectHandler = new SearchActivity.UpdateConnectHandler(this);
+
 
     ArrayList<String> ProductName;
     ArrayList<String> ProductNo;
@@ -145,6 +151,8 @@ public class SearchActivity extends AppCompatActivity {
         NetBlock = new ArrayList<>();
 
         storeDataInArrays();
+
+        mConnectImage=findViewById(R.id.connectsearch_BT);
 
 
         mReader = BTReader.getReader(mContext, mAccessHandler);
@@ -377,9 +385,45 @@ public class SearchActivity extends AppCompatActivity {
         else if (openResult == SDConsts.RF_OPEN_FAIL)
             if (D) Log.e(TAG, "Reader open failed");
 
-//        updateConnectState();
+        updateConnectState();
         super.onStart();
     }
 
+    private void updateConnectState() {
+        if (mReader.BT_GetConnectState() == SDConsts.BTConnectState.CONNECTED){
+            mConnectImage.setImageResource(R.drawable.bluetoothconnected);
+
+
+        }
+        else {
+            mConnectImage.setImageResource(R.drawable.bluetoothnotconnected);
+        }
+    }
+
+    private static class UpdateConnectHandler extends Handler {
+        private final WeakReference<SearchActivity> mExecutor;
+        public UpdateConnectHandler(SearchActivity ac) {
+            mExecutor = new WeakReference<>(ac);
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        public void handleMessage(Message msg) {
+            SearchActivity executor = mExecutor.get();
+            if (executor != null) {
+                executor.handleUpdateConnectHandler(msg);
+                executor.handleMessage(msg);
+            }
+        }
+    }
+
+    public void handleUpdateConnectHandler(Message m) {
+        if (m.what == MSG_OPTION_CONNECT_STATE_CHANGED) {
+            updateConnectState();
+        }
+        else {
+
+        }
+    }
 
 }

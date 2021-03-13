@@ -13,6 +13,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class LocateActivity extends AppCompatActivity {
 
     private static final boolean D = Constants.MAIN_D;
 
+    public static final int MSG_OPTION_CONNECT_STATE_CHANGED = 0;
+
     private AccessHandler mAccessHandler = new AccessHandler(this);
 
     int power= -1;
@@ -49,6 +52,8 @@ public class LocateActivity extends AppCompatActivity {
 
     String mEPC;
     private StopwatchService mStopwatchSvc;
+    public final LocateActivity.UpdateConnectHandler mUpdateConnectHandler = new LocateActivity.UpdateConnectHandler(this);
+    ImageView mConnectImage;
 
 
 
@@ -62,7 +67,7 @@ public class LocateActivity extends AppCompatActivity {
         mEPC = getIntent().getStringExtra("mEPC");
         tv=findViewById(R.id.textViewtest);
         tv.setText(mEPC);
-
+        mConnectImage=findViewById(R.id.connectlocate_BT);
         mReader = BTReader.getReader(mContext, mAccessHandler);
 
         mTagLocateProgress = findViewById(R.id.tag_locate_progress);
@@ -101,6 +106,7 @@ public class LocateActivity extends AppCompatActivity {
             data = (String)m.obj;
         String messageStr = null;
         switch (m.what) {
+
             case SDConsts.Msg.RFMsg:
                 switch (m.arg1) {
                     //RF_Read callback message
@@ -177,7 +183,7 @@ public class LocateActivity extends AppCompatActivity {
         else if (openResult == SDConsts.RF_OPEN_FAIL)
             if (D) Log.e(TAG, "Reader open failed");
 
-//        updateConnectState();
+        updateConnectState();
         super.onStart();
     }
 
@@ -185,6 +191,42 @@ public class LocateActivity extends AppCompatActivity {
         mLocateValue = data;
         mTagLocateProgress.setProgress(data);
 
+    }
+
+    private void updateConnectState() {
+        if (mReader.BT_GetConnectState() == SDConsts.BTConnectState.CONNECTED){
+            mConnectImage.setImageResource(R.drawable.bluetoothconnected);
+
+
+        }
+        else {
+            mConnectImage.setImageResource(R.drawable.bluetoothnotconnected);
+        }
+    }
+
+    private static class UpdateConnectHandler extends Handler {
+        private final WeakReference<LocateActivity> mExecutor;
+        public UpdateConnectHandler(LocateActivity ac) {
+            mExecutor = new WeakReference<>(ac);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            LocateActivity executor = mExecutor.get();
+            if (executor != null) {
+                executor.handleUpdateConnectHandler(msg);
+                executor.handleMessage(msg);
+            }
+        }
+    }
+
+    public void handleUpdateConnectHandler(Message m) {
+        if (m.what == MSG_OPTION_CONNECT_STATE_CHANGED) {
+            updateConnectState();
+        }
+        else {
+
+        }
     }
 
 
